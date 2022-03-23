@@ -28,12 +28,22 @@ let score2 = 0;
 
 nameForm.addEventListener('submit', (e) => {
   // don't forget to prevent the default form behavior!
+  e.preventDefault();
 
   // get the name data from the form
 
+  const data = new FormData(nameForm);
+
   // set the state to this data from the form
 
+  name1 = data.get('team-one');
+  name2 = data.get('team-two');
+
+  //name1.textContent = name1;
+  //name2.textContent = name2; 
+
   // reset the form values
+  nameForm.reset();
 
   displayCurrentGameEl();
 });
@@ -41,24 +51,29 @@ nameForm.addEventListener('submit', (e) => {
 
 teamOneAddButton.addEventListener('click', () => {
   // increment the current state for team one's score
+  score1++;
+
 
   displayCurrentGameEl();
 });
 
 teamTwoAddButton.addEventListener('click', () => {
   // increment the current state for team two's score
+  score2++;
 
   displayCurrentGameEl();
 });
 
 teamOneSubtractButton.addEventListener('click', () => {
   // decrement the current state for team one's score
+  score1--;
 
   displayCurrentGameEl();
 });
 
 teamTwoSubtractButton.addEventListener('click', () => {
   // decrement the current state for team two's score
+  score2--;
 
   displayCurrentGameEl();
 });
@@ -72,6 +87,8 @@ finishGameButton.addEventListener('click', async () => {
   name2 = '';
   score1 = 0;
   score2 = 0;
+
+  createGame();
 
   displayCurrentGameEl();
 });
@@ -91,6 +108,9 @@ function displayCurrentGameEl() {
 
   // change the label to show team one's name;
   // change the label to show team two's name;
+
+  name1.textContent = name1;
+  name2.textContent = name2;
 
   // call the render game function to create a game element
 
