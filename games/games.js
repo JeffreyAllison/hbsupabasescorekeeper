@@ -39,8 +39,8 @@ nameForm.addEventListener('submit', (e) => {
   name1 = data.get('team-one');
   name2 = data.get('team-two');
 
-  //name1.textContent = name1;
-  //name2.textContent = name2; 
+  teamOneLabel.textContent = name1;
+  teamTwoLabel.textContent = name2;
 
   // reset the form values
   nameForm.reset();
@@ -80,15 +80,22 @@ teamTwoSubtractButton.addEventListener('click', () => {
 
 finishGameButton.addEventListener('click', async () => {
   // create a new game using the current game state
+  const newGame = {
+    name1: name1,
+    name2: name2,
+    score1: score1,
+    score2: score2,
+
+  };
+
+  await createGame(newGame);
 
   // after creating this new game, re-fetch the games to get the updated state and display them (hint: call displayAllGames())
-
-  name1 = '';
-  name2 = '';
+  await displayAllGames();
+  name1 = 'Team 1';
+  name2 = 'Team 2';
   score1 = 0;
   score2 = 0;
-
-  createGame();
 
   displayCurrentGameEl();
 });
@@ -98,29 +105,48 @@ logoutButton.addEventListener('click', () => {
 });
 
 // on load . . .
-window.addEventListener('', async () => {
+window.addEventListener('load', async () => {
   // display all past games (hint: call displayAllGames())
+  await displayAllGames();
 });
 
 
 function displayCurrentGameEl() {
   // clear out the current game div
+  currentGameEl.textContent = '';
 
   // change the label to show team one's name;
   // change the label to show team two's name;
+  teamOneLabel.textContent = name1;
+  teamTwoLabel.textContent = name2;
+  const newGame = {
+    name1: name1,
+    name2: name2,
+    score1: score1,
+    score2: score2,
+  };
 
-  name1.textContent = name1;
-  name2.textContent = name2;
+  //name1.textContent = name1;
+  //name2.textContent = name2;
 
   // call the render game function to create a game element
+  const gameEl = renderGame(newGame);
 
   // append the element to the cleared out current game div
+  currentGameEl.append(gameEl);
 }
 
 
-function displayAllGames() {
+async function displayAllGames() {
   // clear out the past games list in the DOM
+  pastGamesEl.textContent = '';
 
+  const games = await getGames();
+
+  for (let game of games) {
+    const gameEl = renderGame(game);
+    pastGamesEl.append(gameEl);
+  }
   // FETCH ALL GAMES from supabase
 
   // loop through the past games 
