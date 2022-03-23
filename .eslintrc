@@ -11,7 +11,7 @@
     "browser": true,
     "es6": true,
     "jest": true,
-    "node": true,
+    "node": true
   },
   "globals": {
     "QUnit": false,
@@ -67,7 +67,7 @@
     "comma-spacing": "error",
     "space-before-function-paren": [
       "error",
-      "never"
+      "ignore"
     ],
     "keyword-spacing": [
       "error",

@@ -85,15 +85,14 @@ finishGameButton.addEventListener('click', async () => {
     name2: name2,
     score1: score1,
     score2: score2,
-
   };
 
   await createGame(newGame);
 
   // after creating this new game, re-fetch the games to get the updated state and display them (hint: call displayAllGames())
   await displayAllGames();
-  name1 = 'Team 1';
-  name2 = 'Team 2';
+  name1 = 'Team A';
+  name2 = 'Team B';
   score1 = 0;
   score2 = 0;
 
@@ -111,7 +110,7 @@ window.addEventListener('load', async () => {
 });
 
 
-function displayCurrentGameEl() {
+function displayCurrentGameEl () {
   // clear out the current game div
   currentGameEl.textContent = '';
 
@@ -137,7 +136,7 @@ function displayCurrentGameEl() {
 }
 
 
-async function displayAllGames() {
+async function displayAllGames () {
   // clear out the past games list in the DOM
   pastGamesEl.textContent = '';
 
