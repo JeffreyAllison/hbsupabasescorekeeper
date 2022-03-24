@@ -1,6 +1,7 @@
 # Supabase Soccer Scorekeeper
 
 ## Learning Objectives
+
 - Create an object containing complex values (objects or arrays) and access any item in that complex object using dot and bracket notation
 - Display errors to users with an alert inside a .catch block
 - In response to a user event, make a fetch call add a new object to the database and display the new state to the user.
@@ -11,8 +12,9 @@ Here is the model for the `games` table
 
 ![](./games-model.png)
 
-### Live Example:
-https://alchemycodelab.github.io/web-01-soccer-scorekeeper-supabase/
+### Live Example
+
+<https://alchemycodelab.github.io/web-01-soccer-scorekeeper-supabase/>
 
 | User should be able to . . .                                                         |             |
 | :----------------------------------------------------------------------------------- | ----------: |
